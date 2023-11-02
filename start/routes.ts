@@ -25,7 +25,6 @@ Route.get('/', async ({ view }) => {
 })
 
 Route.get('/posts', 'PostsController.index').middleware('auth').as("posts.index")
-
 Route.get('/posts/:id', 'PostsController.show').middleware('auth').as("posts.show")
 
 Route.get('/sessions', 'SessionsController.index').as("sessions.index")
