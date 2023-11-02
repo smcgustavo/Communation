@@ -40,14 +40,12 @@ const posts = [
 
 export default class PostsController {
   public async index ({view, auth}: HttpContextContract ){
-    await auth.use('web').authenticate()
-    console.log(auth.user!)
+    await auth.authenticate()
     return view.render('posts/index', {posts : posts});
   }
 
   public async show ({view, params, auth} : HttpContextContract){
-    await auth.use('web').authenticate()
-    console.log(auth.user!)
+    await auth.authenticate()
     const post = posts[params.id];
     return view.render('posts/show', {post : post});
   }
