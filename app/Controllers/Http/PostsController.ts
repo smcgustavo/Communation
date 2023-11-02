@@ -39,7 +39,9 @@ const posts = [
 ];
 
 export default class PostsController {
-  public async index ({view}: HttpContextContract ){
+  public async index ({view, auth}: HttpContextContract ){
+    await auth.use('web').authenticate()
+    console.log(auth.user!)
     return view.render('posts/index', {posts : posts});
   }
 
