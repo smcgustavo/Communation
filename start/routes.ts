@@ -24,7 +24,7 @@ Route.get('/', async ({ view }) => {
   return view.render('hello')
 })
 
-Route.get('/posts', 'PostsController.index')
+Route.get('/posts', 'PostsController.index').middleware(auth)
 
 Route.get('/posts/:id', 'PostsController.show')
 

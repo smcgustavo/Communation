@@ -45,7 +45,9 @@ export default class PostsController {
     return view.render('posts/index', {posts : posts});
   }
 
-  public async show ({view, params} : HttpContextContract){
+  public async show ({view, params, auth} : HttpContextContract){
+    await auth.use('web').authenticate()
+    console.log(auth.user!)
     const post = posts[params.id];
     return view.render('posts/show', {post : post});
   }
