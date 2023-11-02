@@ -3,7 +3,7 @@
 @section('body')
 <div id="LoginScreen">
     <h1 class="title">Login</h1>
-    <form method="POST"> 
+    <form action='{{ route("sessions.store")}}' method="POST"> 
         <div id="loginBlock">
             <div>Email:</div>
             <input name="email" type="email">

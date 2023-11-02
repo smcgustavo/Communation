@@ -24,8 +24,9 @@ Route.get('/', async ({ view }) => {
   return view.render('hello')
 })
 
-Route.get('/posts', 'PostsController.index').middleware('auth')
+Route.get('/posts', 'PostsController.index').middleware('auth').as("posts.index")
 
-Route.get('/posts/:id', 'PostsController.show').middleware('auth')
+Route.get('/posts/:id', 'PostsController.show').middleware('auth').as("posts.show")
 
-Route.get('/sessions', 'SessionsController.index')
+Route.get('/sessions', 'SessionsController.index').as("sessions.index")
+Route.post('/sessions', 'SessionsController.store').as("sessions.store")
