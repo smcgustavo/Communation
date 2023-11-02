@@ -1,0 +1,20 @@
+@layout('layouts/main')
+
+@section('body')
+<div id="LoginScreen">
+    <h1 class="title">Login</h1>
+    <form method="POST"> 
+        <div id="loginBlock">
+            <div>Email:</div>
+            <input name="email" type="email">
+            <div>Password:</div>
+            <input name="password" type="password">
+            <br>
+            <div id="loginButtons">
+                <button type="submit" id="login"> Login </button>
+                <button type="submit" id="login"> Register </button>
+            </div>
+        </div>
+    </form>
+</div>
+@end

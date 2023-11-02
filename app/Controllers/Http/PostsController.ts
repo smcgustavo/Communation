@@ -8,7 +8,7 @@ const posts = [
   },
   {
     'id' : 1,
-    'Content' : 'Rafael entrou no  chat',
+    'Content' : 'Rafael não entrou no chat',
     'Autor' : 'Rafael'
   },
   {

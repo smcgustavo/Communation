@@ -49,6 +49,7 @@ a {
   display: block;
   background-color: #272727;
   word-break:break-all;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
 
 }
 
@@ -60,6 +61,8 @@ button {
   overflow: hidden;
   outline:none;
   color: #aa3d3d;
+  margin-top: 5%;
+  margin-right: 5%;
 }
 
 #seePost {
@@ -67,6 +70,45 @@ button {
   background-color: #aa3d3d;
   color: #e6e2ff;
   padding: 1.5%;
+  margin: 2%;
+}
+
+#login {
+  border-radius: 15px;
+  background-color: #aa3d3d;
+  color: #e6e2ff;
+  padding: 1.5%;
+}
+
+#LoginScreen{
+  border-radius:25px;
+  margin-top: 50%;
+  padding: 25px;
+  display: block;
+  background-color: #272727;
+  word-break:break-all;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+  
+}
+
+input{
+  background-color:#5c5c5c;
+  outline: none;
+  border-radius: 15px;
+  padding: 2%;
+  border: none;
+  color:#e2e2e2
+}
+
+#loginBlock {
+  display:grid;
+  align-items: stretch;
+  height: 200px;
+}
+
+#loginButtons{
+  display: flex;
+  justify-content: center;
 }
 
 #author {
@@ -90,6 +132,13 @@ button {
 }
 
 .title {
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 10px;
+  color: #aa3d3d;
+}
+
+#title {
   font-size: 50px;
   line-height: 50px;
   margin-bottom: 10px;
