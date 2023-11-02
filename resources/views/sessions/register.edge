@@ -1,0 +1,28 @@
+@layout('layouts/main')
+
+@section('body')
+<div id="RegisterScreen">
+    <h1 class="title">Register</h1>
+    <form action='{{ route("sessions.store")}}' method="POST"> 
+        <div id="registerBlock">
+            <div>Name:</div>
+            <input name="name" type="text">
+            <div>Username:</div>
+            <input name="username" type="text">
+            <div>Email:</div>
+            <input name="email" type="email">
+            <div>Email Confirm:</div>
+            <input name="emailC" type="email">
+            <div>Password:</div>
+            <input name="password" type="password">
+            <div>Password Confirm:</div>
+            <input name="passwordC" type="password">
+            <br>
+            <div id="loginButtons">
+                <button type="submit" id="login">Confirm</button>
+                <a href="/" id="cancel">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+@end

@@ -78,11 +78,34 @@ button {
   background-color: #aa3d3d;
   color: #e6e2ff;
   padding: 1.5%;
+  height: 40px;
+  font-size: 16px;
+}
+
+#cancel {
+  border-radius: 15px;
+  background-color: #aa3d3d;
+  color: #e6e2ff;
+  padding: 1.5%;
+  height: 40px;
+  font-weight: normal;
+  font-size: 16px;
 }
 
 #LoginScreen{
   border-radius:25px;
   margin-top: 50%;
+  padding: 25px;
+  display: block;
+  background-color: #272727;
+  word-break:break-all;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+  
+}
+
+#RegisterScreen{
+  border-radius:25px;
+  margin-top: 30%;
   padding: 25px;
   display: block;
   background-color: #272727;
@@ -106,9 +129,16 @@ input{
   height: 200px;
 }
 
+#registerBlock {
+  display:grid;
+  align-items: stretch;
+  height: 500px;
+}
+
+
 #loginButtons{
-  display: flex;
-  justify-content: center;
+  display: block;
+  align-self: center;
 }
 
 #author {

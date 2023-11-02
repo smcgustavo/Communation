@@ -25,10 +25,15 @@ Route.get('/', async ({ view }) => {
 })
 
 Route.group(() => {
-  Route.get('/posts', 'PostsController.index').middleware('auth').as("posts.index")
-  Route.get('/posts/:id', 'PostsController.show').middleware('auth').as("posts.show")
+  Route.get('/', 'PostsController.index').as("index")
+  Route.get('/:id', 'PostsController.show').as("show")
 })
-
+  .prefix('/posts')
+  .middleware('auth')
+  .as('posts')
 
 Route.get('/sessions', 'SessionsController.index').as("sessions.index")
+Route.get('/logout', 'SessionsController.delete').as("sessions.delete")
 Route.post('/sessions', 'SessionsController.store').as("sessions.store")
+
+Route.get('/register', 'SessionsController.register')
