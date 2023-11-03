@@ -5,19 +5,19 @@ export default class SessionsController {
   public async index({view}: HttpContextContract ){
     return view.render('sessions/create');
   }
-  public async store({auth, request, response, view}: HttpContextContract ){
-    const email = request.input('email')
-    const password = request.input('password')
+  public async store({ auth, request, response, view }: HttpContextContract) {
+    const email = request.input('email');
+    const password = request.input('password');
 
-    console.log(email)
-    console.log(password)
+    try {
+        await auth.use('web').attempt(email, password);
+        response.redirect().toRoute('posts.index');
+    } catch {
+        // Defina a mensagem de erro
+        const errorMessage = 'Invalid User or Password.';
 
-    try{
-      await auth.use('web').attempt(email,password)
-      response.redirect().toRoute('posts.index')
-    } 
-    catch {
-      return view.render('sessions/createError')
+        // Passe a mensagem de erro para a view
+        return view.render('sessions/create', { errorMessage });
     }
   }
   public async delete({auth, response} : HttpContextContract){

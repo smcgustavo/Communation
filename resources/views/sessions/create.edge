@@ -9,6 +9,10 @@
             <input name="email" type="email">
             <div>Password:</div>
             <input name="password" type="password">
+            <!-- Exiba a mensagem de erro aqui -->
+            @if (errorMessage)
+                <div id="errorMessage">{{ errorMessage }}</div>
+            @endif
             <br>
             <div id="loginButtons">
                 <button type="submit" id="login"> Login </button>
