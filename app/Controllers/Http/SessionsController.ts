@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import User from 'App/Models/User'
 
 export default class SessionsController {
   
@@ -26,5 +27,22 @@ export default class SessionsController {
   }
   public async register({view}: HttpContextContract ){
     return view.render('sessions/register');
+  }
+  public async create({request, response, view}: HttpContextContract ){
+    const name = request.input('name');
+    const username = request.input('username');
+    const email = request.input('email');
+    const emailC = request.input('emailC');
+    const passwd = request.input('password');
+    const passwdC = request.input('passwordC');
+    
+    if(email === emailC && passwd === passwdC){
+      User.create({email: email, password: passwd})
+      return response.redirect().toRoute('/');
+    }
+    else{
+      return view.render('sessions/register', { errorMessage: "Email or Password doesn't match." });
+    }
+
   }
 }

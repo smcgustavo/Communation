@@ -37,3 +37,4 @@ Route.get('/logout', 'SessionsController.delete').as("sessions.delete")
 Route.post('/sessions', 'SessionsController.store').as("sessions.store")
 
 Route.get('/register', 'SessionsController.register')
+Route.post('/register', 'SessionsController.create').as('sessions.create')

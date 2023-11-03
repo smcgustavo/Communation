@@ -1,52 +1,16 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
-const posts = [
-  {
-    'id' : 0,
-    'Content' : 'Seja bem vindo ao communation',
-    'Autor' : 'Gustavo'
-  },
-  {
-    'id' : 1,
-    'Content' : 'Rafael não entrou no chat',
-    'Autor' : 'Rafael'
-  },
-  {
-    'id' : 2,
-    'Content' : 'Alguém kicka o rafael',
-    'Autor' : 'Desconhecido'
-  },
-  {
-    'id' : 3,
-    'Content' : 'Alguém kicka o desconhecido',
-    'Autor' : 'Guilherme'
-  },
-  {
-    'id' : 4,
-    'Content' : 'To no processo já aqui',
-    'Autor' : 'Gustavo'
-  },
-  {
-    'id' : 5,
-    'Content' : 'Ele é muito poderoso, está resistindo ao meu poder de admin aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-    'Autor' : 'Gustavo'
-  },
-  {
-    'id' : 6,
-    'Content' : 'Seja bem vindo ao communation',
-    'Autor' : 'Gustavo'
-  }
-];
+import Post from 'App/Models/Post'
 
 export default class PostsController {
   public async index ({view, auth}: HttpContextContract ){
     await auth.authenticate()
+    const posts = await Post.all()
     return view.render('posts/index', {posts : posts});
   }
 
   public async show ({view, params, auth} : HttpContextContract){
     await auth.authenticate()
-    const post = posts[params.id];
+    const post = await Post.find(params.id)
     return view.render('posts/show', {post : post});
   }
 }

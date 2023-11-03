@@ -177,6 +177,41 @@ input{
   color: #aa3d3d;
 }
 
+#postInputBlock{
+  background-color: #272727;
+  display: flex;
+  border-radius: 25px;
+  margin-top: 4%;
+  align-items: center;
+  height: 130px;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#postSubmitButton {
+  background-color: #aa3d3d;
+  border: none;
+  cursor:pointer;
+  outline:none;
+  color: #e2e2e2;
+  margin-left: 1.5%;
+}
+
+#postInput {
+  height: 70px;
+  padding: 3%;
+  border-radius: 25px;
+  background-color:#272727;
+  word-break: break-word;
+  resize: none;
+  color: #e2e2e2;
+  font-size: large;
+  border: #363636;
+  border-style: solid;
+  border-width: 1px;
+  outline: none;
+  margin-left: 1.5%;
+}
+
 .subtitle {
   font-size: 26px;
   margin-bottom: 40px;
