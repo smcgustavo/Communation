@@ -18,6 +18,9 @@ export default class Post extends BaseModel {
   public author : string
 
   @column()
+  public name : string
+
+  @column()
   public likes : number
 
   @column()

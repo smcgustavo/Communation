@@ -2,7 +2,10 @@
 
 @section('body')
   <div id="post">
-    <div id="author">{{post.author}}</div>
+    <div id="postHead">  
+      <div id="name">{{post.name}}</div> 
+      <div id="author">{{'@' + post.author}}</div>
+    </div>
     <div id="content">{{post.content}}</div>
     <div id="likes">
       <button class="fas fa-thumbs-up" id="buttonPosts" > {{post.likes}}</button>

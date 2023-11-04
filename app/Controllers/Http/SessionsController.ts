@@ -37,7 +37,7 @@ export default class SessionsController {
     const passwdC = request.input('passwordC');
     
     if(email === emailC && passwd === passwdC){
-      User.create({email: email, password: passwd})
+      User.create({email: email, password: passwd, name: name, username:username})
       return response.redirect().toRoute('/');
     }
     else{

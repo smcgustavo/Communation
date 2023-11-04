@@ -32,9 +32,14 @@ Route.group(() => {
   .middleware('auth')
   .as('posts')
 
+  
 Route.get('/sessions', 'SessionsController.index').as("sessions.index")
 Route.get('/logout', 'SessionsController.delete').as("sessions.delete")
 Route.post('/sessions', 'SessionsController.store').as("sessions.store")
 
 Route.get('/register', 'SessionsController.register')
 Route.post('/register', 'SessionsController.create').as('sessions.create')
+
+
+Route.get('/profile', 'ProfilesController.index').as('profile.index').middleware('auth')
+Route.post('/profile', 'ProfilesController.update').as('profile.update').middleware('auth')

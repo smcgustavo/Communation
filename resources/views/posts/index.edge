@@ -1,21 +1,43 @@
 @layout('layouts/main')
 
 @section('body')
-  <div id="postInputBlock">
-    <textarea rows="4" cols="58" id="postInput" name="postContent" placeholder="Write something..."></textarea>
-    <input type="submit" name="publishPost" id="postSubmitButton" value="Publish">
-  </div>
-  @each (post in posts)
-    <div id="post">
-      <a href="/posts/{{post.id}}">
-      <div id="author">{{post.author}}</div>
-      <div id="content">{{post.content}}</div>
-      </a>
-      <div id="likes">
-        <button class="fas fa-thumbs-up" id="buttonPosts" > {{post.likes}} </button>
-        <button class="fas fa-thumbs-down" id="buttonPosts" > {{post.dislikes}}</button>
-        <button class="fas fa-comment" id="buttonPosts" > 7</button>
-      </div>
-    </div>
-  @end
+
+<style>
+
+	#headTimeline a {
+		color: white; 
+		margin-right: 10px; 
+		text-decoration: none;
+		height: 10px;
+	}
+  
+	#postInputBlock {
+		margin-top: 50px;
+	}
+</style>
+
+<div id="headTimelineFixed">
+	<a id="login" href="/profile">Profile</a>
+	<a id="login" href="/logout">Logout</a>
+</div>
+<div id="postInputBlock">
+	<textarea rows="4" cols="58" id="postInput" name="postContent" placeholder="Write something..."></textarea>
+	<input type="submit" name="publishPost" id="postSubmitButton" value="Publish">
+</div>
+@each (post in posts)
+<div id="post">
+	<a href="/posts/{{post.id}}">
+		<div id="postHead">
+			<div id="name">{{post.name}}</div>
+			<div id="author">{{'@' + post.author}}</div>
+		</div>
+		<div id="content">{{post.content}}</div>
+	</a>
+	<div id="likes">
+		<button class="fas fa-thumbs-up" id="buttonPosts"> {{post.likes}} </button>
+		<button class="fas fa-thumbs-down" id="buttonPosts"> {{post.dislikes}}</button>
+		<button class="fas fa-comment" id="buttonPosts"> 7</button>
+	</div>
+</div>
+@end
 @end
