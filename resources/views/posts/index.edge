@@ -3,14 +3,13 @@
 @section('body')
 
 <style>
-
 	#headTimeline a {
-		color: white; 
-		margin-right: 10px; 
+		color: white;
+		margin-right: 10px;
 		text-decoration: none;
 		height: 10px;
 	}
-  
+
 	#postInputBlock {
 		margin-top: 50px;
 	}
@@ -20,9 +19,11 @@
 	<a id="login" href="/profile">Profile</a>
 	<a id="login" href="/logout">Logout</a>
 </div>
-<div id="postInputBlock">
-	<textarea rows="4" cols="58" id="postInput" name="postContent" placeholder="Write something..."></textarea>
-	<input type="submit" name="publishPost" id="postSubmitButton" value="Publish">
+<div>
+	<form action='{{ route("posts.create")}}' method="POST" id="postInputBlock">
+		<textarea rows="4" cols="58" id="postInput" name="postContent" placeholder="Write something..."></textarea>
+		<input type="submit" name="publishPost" id="postSubmitButton" value="Publish">
+	</form>
 </div>
 @each (post in posts)
 <div id="post">

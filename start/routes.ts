@@ -27,6 +27,7 @@ Route.get('/', async ({ view }) => {
 Route.group(() => {
   Route.get('/', 'PostsController.index').as("index")
   Route.get('/:id', 'PostsController.show').as("show")
+  Route.post('/', 'PostsController.create').as("create")
 })
   .prefix('/posts')
   .middleware('auth')
