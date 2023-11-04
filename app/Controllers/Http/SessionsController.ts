@@ -38,7 +38,7 @@ export default class SessionsController {
     
     if(email === emailC && passwd === passwdC){
       User.create({email: email, password: passwd, name: name, username:username})
-      return response.redirect().toRoute('/');
+      return response.redirect().toRoute('/sessions');
     }
     else{
       return view.render('sessions/register', { errorMessage: "Email or Password doesn't match." });

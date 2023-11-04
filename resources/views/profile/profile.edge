@@ -8,39 +8,6 @@
         position: relative;
     }
 
-    #background-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: url('/resources/css/Logo.png') center center no-repeat;
-        background-size: cover;
-        opacity: 0.3;
-    }
-
-    #header-rectangle {
-        background-color: #333;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1;
-        padding: 10px;
-        text-align: right;
-    }
-
-    #header-rectangle a {
-        text-decoration: none;
-        color: white;
-        margin-right: 10px;
-    }
-
-    #title-separator {
-        height: 20px;
-    }
-
     #UserProfile h1 {
         padding-top: 40px;
     }
@@ -48,16 +15,18 @@
     #user-info {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: start;
         margin: 20px;
+        background-color: #272727;
+        border-radius: 25px;
+        padding: 3%;
     }
 
     .edit-section {
-        border: 1px solid #ccc;
-        border-radius: 10px;
+        border-radius: 25px;
+        background-color: #272727;
         padding: 20px;
         margin: 20px;
-        display: none;
     }
 
     .edit-section label {
@@ -67,98 +36,79 @@
     }
 
     .edit-section input {
-        width: 100%;
+        width: 80%;
         padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        border-radius: 20px;
         margin-top: 5px;
-    }
-
-    .edit-buttons {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .edit-buttons button {
-        padding: 10px 20px;
-        background-color: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
         margin-right: 10px;
     }
+
+    #attributeColor{
+        color: #aa3d3d;
+    }
+
 </style>
 
+<div id="headTimelineFixed">
+    <a href="{{ route('/') }}" id="login">Home</a>
+    <a href="{{ route('/posts') }}" id="login">Timeline</a>
+</div>
+
 <div id="UserProfile">
-    <div id="background-image"></div>
-
-    <div id="header-rectangle">
-        <a href="{{ route('/') }}" class="btn btn-primary">Home</a>
-        <a href="{{ route('/posts') }}" class="btn btn-primary">Posts</a>
-    </div>
-
-    <div id="title-separator"></div>
 
     <h1 class="title">User Profile</h1>
 
     <div id="user-info">
-        <div><strong>Email:</strong> {{ user.email }}</div>
-        <div><strong>Nome:</strong> {{ user.name }}</div>
-        <div><strong>Username:</strong> {{ user.username }}</div>
+        <div><strong id="attributeColor">Nome:</strong> {{ user.name }}</div>
+        <div><strong id="attributeColor">Username:</strong> {{ user.username }}</div>
+        <div><strong id="attributeColor">Email:</strong> {{ user.email }}</div>
+        <div><strong id="attributeColor">Account Created at:</strong> {{ user.createdAt }}</div>
     </div>
 
     <div class="edit-section" id="edit-username-section">
-        <h2>Editar Nome de Usuário</h2>
+        <h2 >Change Username</h2>
         <form  method="POST">
-            
-
             <div class="form-group">
-                <label for="new-username">Novo Nome de Usuário:</label>
+                <label for="new-username">New Username:</label>
                 <input type="text" name="new-username">
             </div>
 
             <div class="form-group">
-                <label for="current-password-username">Senha Atual:</label>
+                <label for="current-password-username">Current Password:</label>
                 <input type="password" name="current-password-username">
             </div>
-
-            <div class="form-group">
-                <label for="confirm-password-username">Confirmar Senha Atual:</label>
-                <input type="password" name="confirm-password-username">
-            </div>
-
-            <button type="submit">Salvar Nome de Usuário</button>
+            <button id="login" type="submit">Save Username</button>
         </form>
     </div>
 
     <div class="edit-section" id="edit-password-section">
-        <h2>Alterar Senha</h2>
+        <h2>Change Password</h2>
         <form method="POST">
            
             <div class="form-group">
-                <label for="new-password">Nova Senha:</label>
+                <label for="new-password">New Password:</label>
                 <input type="password" name="new-password">
             </div>
 
             <div class="form-group">
-                <label for="confirm-new-password">Confirmar Nova Senha:</label>
+                <label for="confirm-new-password">Confirm New Password:</label>
                 <input type="password" name="confirm-new-password">
             </div>
 
             <div class="form-group">
-                <label for="current-password">Senha Atual:</label>
+                <label for="current-password">Current Password:</label>
                 <input type="password" name="current-password">
             </div>
 
-            <button type="submit">Alterar Senha</button>
+            <button id="login" type="submit">Save Password</button>
         </form>
     </div>
 
     <div class="edit-buttons">
-        <button id="edit-username-button" onclick="toggleEditUsernameSection()">Editar Nome de Usuário</button>
-        <button id="edit-password-button" onclick="toggleEditPasswordSection()">Alterar Senha</button>
+        <button id="login" onclick="toggleEditUsernameSection()">Change Username</button>
+        <button id="login" onclick="toggleEditPasswordSection()">Change Password</button>
     </div>
+    <br>
 </div>
 
 <script>
