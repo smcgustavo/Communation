@@ -49,7 +49,6 @@
 </style>
 
 <div id="headTimelineFixed">
-    <a href="{{ route('/') }}" id="login">Home</a>
     <a href="{{ route('/posts') }}" id="login">Timeline</a>
 </div>
 
@@ -58,7 +57,7 @@
     <h1 class="title">User Profile</h1>
 
     <div id="user-info">
-        <div><strong id="attributeColor">Nome:</strong> {{ user.name }}</div>
+        <div><strong id="attributeColor">Name:</strong> {{ user.name }}</div>
         <div><strong id="attributeColor">Username:</strong> {{ user.username }}</div>
         <div><strong id="attributeColor">Email:</strong> {{ user.email }}</div>
         <div><strong id="attributeColor">Account Created at:</strong> {{ user.createdAt }}</div>
@@ -77,6 +76,9 @@
                 <input type="password" name="current-password-username">
             </div>
             <button id="login" type="submit">Save Username</button>
+            @if (errorMessage)
+                <div id="errorMessage">{{ errorMessage }}</div>
+            @endif
         </form>
     </div>
 
@@ -98,7 +100,9 @@
                 <label for="current-password">Current Password:</label>
                 <input type="password" name="current-password">
             </div>
-
+            @if (errorMessage2)
+                <div id="errorMessage">{{ errorMessage2 }}</div>
+            @endif
             <button id="login" type="submit">Save Password</button>
         </form>
     </div>

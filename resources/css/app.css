@@ -230,7 +230,7 @@ input{
   padding: 30px;
   padding-top: 0px;
   align-items: center;
-
+  z-index: 100;
 }
 
 #postInputBlock{

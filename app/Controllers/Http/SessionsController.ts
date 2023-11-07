@@ -35,7 +35,9 @@ export default class SessionsController {
     const emailC = request.input('emailC');
     const passwd = request.input('password');
     const passwdC = request.input('passwordC');
-    
+    if(name == null || username == null || email == null || emailC == null || passwd == null || passwdC == null ){
+      return view.render('sessions/register', { errorMessage: "One or more field(s) empty(ies)." });
+    }
     if(email === emailC && passwd === passwdC){
       User.create({email: email, password: passwd, name: name, username:username})
       return response.redirect().toRoute('/sessions');
