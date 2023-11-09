@@ -48,7 +48,7 @@ export default class ProfilesController {
                 // Usuário não autenticado, redirecione ou lide com a situação de acordo
                 return response.redirect().toRoute('sessions.index');
             }
-            const usernames = await Database.from('posts').select('username')
+            const usernames = await Database.from('users').select('username')
             const newUsername = request.input('new-username');
             const password = request.input('current-password-username');
             if (usernames.includes(newUsername)){

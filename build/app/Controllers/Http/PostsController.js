@@ -1,44 +1,25 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const posts = [
-    {
-        'Title': 'Hello',
-        'Content': 'Seja bem vindo ao communation',
-        'Autor': 'Gustavo'
-    },
-    {
-        'Title': 'aaaa',
-        'Content': 'Rafael entrou no  chat',
-        'Autor': 'Rafael'
-    },
-    {
-        'Title': 'aaa',
-        'Content': 'Alguém kicka o rafael',
-        'Autor': 'Desconhecido'
-    },
-    {
-        'Title': 'aaa',
-        'Content': 'Alguém kicka o desconhecido',
-        'Autor': 'Guilherme'
-    },
-    {
-        'Title': 'aaa',
-        'Content': 'To no processo já aqui',
-        'Autor': 'Gustavo'
-    },
-    {
-        'Title': 'aaa',
-        'Content': 'Ele é muito poderoso, está resistindo ao meu poder de admin aaaaaaa',
-        'Autor': 'Gustavo'
-    }
-];
+const Post_1 = __importDefault(global[Symbol.for('ioc.use')]("App/Models/Post"));
 class PostsController {
-    async index({ view }) {
+    async index({ view, auth }) {
+        await auth.authenticate();
+        const posts = await Post_1.default.all();
         return view.render('posts/index', { posts: posts });
     }
-    async show({ view, params }) {
-        const post = posts[params.id];
+    async show({ view, params, auth }) {
+        await auth.authenticate();
+        const post = await Post_1.default.find(params.id);
         return view.render('posts/show', { post: post });
+    }
+    async create({ request, auth, response }) {
+        await auth.authenticate();
+        const user = auth.user;
+        await Post_1.default.create({ content: request.input('postContent'), author: user.username, name: user.name, likes: 0, dislikes: 0 });
+        response.redirect().toRoute('/posts');
     }
 }
 exports.default = PostsController;

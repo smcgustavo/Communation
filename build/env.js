@@ -10,6 +10,7 @@ exports.default = Env_1.default.rules({
     APP_KEY: Env_1.default.schema.string(),
     APP_NAME: Env_1.default.schema.string(),
     CACHE_VIEWS: Env_1.default.schema.boolean(),
+    DB_CONNECTION: Env_1.default.schema.string(),
     SESSION_DRIVER: Env_1.default.schema.string(),
     DRIVE_DISK: Env_1.default.schema.enum(['local']),
     NODE_ENV: Env_1.default.schema.enum(['development', 'production', 'test']),
