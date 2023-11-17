@@ -43,6 +43,7 @@ Route.post('/register', 'SessionsController.create').as('sessions.create')
 
 
 Route.get('/profile', 'ProfilesController.index').as('profile.index').middleware('auth')
+Route.get('/user', 'ProfilesController.user').as('profile.user').middleware('auth')
 //Route.post('/profile', 'ProfilesController.update').as('profile.update').middleware('auth')
 Route.post('/profile/username', 'ProfilesController.updateUsername').as('profile.updateUsername').middleware('auth')
 Route.post('/profile/password', 'ProfilesController.updatePassword').as('profile.updatePassword').middleware('auth')

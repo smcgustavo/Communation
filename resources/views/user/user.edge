@@ -1,0 +1,37 @@
+@layout('layouts/main')
+
+@section('body')
+
+<div id="headTimelineFixed">
+	<a id="login" href="/posts">Timeline</a>
+	<a id="login" href="/logout">Logout</a>
+</div>
+
+<div id="user-header-profile">
+    <img src="Logo.png"  id="img-header">
+    <div id="user-header-info">
+        <div id="name"> {{ user.name }}</div>
+        <div id="author"> {{ '@' + user.username }}</div>
+    </div>
+    <a href="/profile" class="fa fa-gear" id="settings-button-profile" ></a>
+</div>
+
+<div id="post-user-profile">
+    @each (post in posts)
+    <div id="post">
+        <a href="/posts/{{post.id}}">
+            <div id="postHead">
+                <div id="name">{{post.name}}</div>
+                <div id="author">{{'@' + post.author}}</div>
+            </div>
+            <div id="content">{{post.content}}</div>
+        </a>
+        <div id="likes">
+            <button class="fas fa-thumbs-up" id="buttonPosts"> {{post.likes}} </button>
+            <button class="fas fa-thumbs-down" id="buttonPosts"> {{post.dislikes}}</button>
+            <button class="fas fa-comment" id="buttonPosts"> 0</button>
+        </div>
+    </div>
+    @end
+</div>
+@endsection

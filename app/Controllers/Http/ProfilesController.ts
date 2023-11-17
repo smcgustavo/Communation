@@ -1,8 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
+import Post from 'App/Models/Post'
 
 export default class ProfilesController {
 
+    public async user({ auth, view }: HttpContextContract) {
+        // Obtém o usuário autenticado
+        const user = auth.user
+        if(!user){
+            return view.render('posts/index')
+        }
+        const posts = await Post.query().where('author', user.username).orderBy('created_at', 'desc')
+        if(!posts) {
+            return view.render('posts/index')
+        }
+        return view.render('user/user', { user , posts})
+    }
 
     public async index({ auth, view }: HttpContextContract) {
         // Obtém o usuário autenticado
