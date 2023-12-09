@@ -28,11 +28,13 @@ Route.group(() => {
   Route.get('/', 'PostsController.index').as("index")
   Route.get('/:id', 'PostsController.show').as("show")
   Route.post('/', 'PostsController.create').as("create")
+  //Route.post('/:id/like', 'PostsController.like').as("like")
+  //Route.post('/:id/dislike', 'PostsController.dislike').as("dislike")
 })
   .prefix('/posts')
   .middleware('auth')
   .as('posts')
-
+  
   
 Route.get('/sessions', 'SessionsController.index').as("sessions.index")
 Route.get('/logout', 'SessionsController.delete').as("sessions.delete")

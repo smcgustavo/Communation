@@ -14,6 +14,17 @@ export default class PostsController {
     return view.render('posts/show', {post : post});
   }
 
+  public async like ({params, auth, response} : HttpContextContract){
+    await auth.authenticate()
+    const post = await Post.find(params.id)
+
+    if(!post){
+      return response.status(404).json({ message: 'Post not found' })
+    }
+    post.likes += 1;
+    await post.save()
+  }
+
   public async create ({request, auth, response} : HttpContextContract){
     await auth.authenticate()
     const user = auth.user!
