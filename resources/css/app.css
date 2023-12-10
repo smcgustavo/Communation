@@ -55,11 +55,11 @@ a {
 
 #post-user-profile{
   border-radius:25px;
-  margin-top: 0%;
-  padding: 25px;
   display: block;
   background-color: none;
   word-break:break-all;
+  justify-content: space-between;
+  width: 100%;
 
 }
 
@@ -275,9 +275,9 @@ input{
   z-index: 100;
 }
 #user-header-profile {
-  display: flex;
-  align-items: start;
-  justify-content: stretch;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #272727;
   border-radius: 0px 0px 25px 25px;
   height: 100px;
@@ -288,10 +288,13 @@ input{
 #user-header-info {
   display: flex;
   flex-direction: column;
-  align-items: start;
   justify-content: center;
-  padding-top: 4%;
-  padding-left: 2%;
+  margin-left: 20%;
+}
+
+#user-header-org {
+  display: flex;
+  flex-direction: row;
 }
 
 #postInputBlock{
@@ -309,7 +312,7 @@ input{
   height: 40px;
   opacity: 1;
   align-self: center;
-  padding: 2%;
+  padding: 32%;
   background-color: #5c5c5c;
   border-radius: 50px
 }

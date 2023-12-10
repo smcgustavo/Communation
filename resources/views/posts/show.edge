@@ -11,13 +11,17 @@
         <div id="name">{{post.name}}</div> 
         <div id="author">{{'@' + post.author}}</div>
       </div>
-      <form action='{{ route("posts.delete", {id : post.id})}}' method="GET">
-        <input type="submit" name="publishPost" id="postDeleteButton" value="Delete">
-      </form>
+      @if (owner)
+        <form action='{{ route("posts.delete", {id : post.id})}}' method="GET">
+          <input type="submit" name="publishPost" id="postDeleteButton" value="Delete">
+        </form>
+      @endif
     </div>
     <div id="content">{{post.content}}</div>
-    <div id="likes">
-      <button class="fas fa-thumbs-up" id="buttonPosts" > {{post.likes}}</button>
-    </div>
+      <form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+        <div id="likes">
+          <button class="fas fa-thumbs-up" id="buttonPosts" type="submit"> {{post.likes}}</button>
+        </div>
+      </form>
   </div>
 @end

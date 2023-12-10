@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Like from 'App/Models/Like';
-import Post from 'App/Models/Post'
+import Post from 'App/Models/Post';
 
 export default class PostsController {
   public async index({ view, auth }: HttpContextContract) {
@@ -12,7 +12,11 @@ export default class PostsController {
   public async show({ view, params, auth }: HttpContextContract) {
     await auth.authenticate()
     const post = await Post.find(params.id)
-    return view.render('posts/show', { post: post });
+    let owner = false
+    if (auth.user!.username == post?.author){
+      owner = true
+    }
+    return view.render('posts/show', { post: post, owner: owner});
   }
 
   public async like({ params, auth, response }: HttpContextContract) {
@@ -40,7 +44,7 @@ export default class PostsController {
       post.likes = (await Like.query().where('post_id', params.id).count('* as total'))[0].$extras.total
       await post.save()
     }
-
+    return response.continue()
   }
 
   public async create({ request, auth, response }: HttpContextContract) {

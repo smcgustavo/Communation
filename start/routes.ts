@@ -29,7 +29,7 @@ Route.group(() => {
   Route.get('/:id', 'PostsController.show').as("show")
   Route.post('/', 'PostsController.create').as("create")
   Route.get('/delete/:id', 'PostsController.delete').as('delete')
-  Route.get('/like/:id', 'PostsController.like').as("like")
+  Route.post('/like/:id', 'PostsController.like').as("like")
 })
   .prefix('/posts')
   .middleware('auth')
