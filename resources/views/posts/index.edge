@@ -28,16 +28,16 @@
 @each (post in posts)
 <div id="post">
 	<a href="/posts/{{post.id}}">
-		<div id="postHead">
+		<div id="postHeadIndex">
+			
 			<div id="name">{{post.name}}</div>
 			<div id="author">{{'@' + post.author}}</div>
+
 		</div>
 		<div id="content">{{post.content}}</div>
 	</a>
 	<div id="likes">
 		<button class="fas fa-thumbs-up" id="buttonPosts" type="submit" > {{post.likes}} </button>
-		<button class="fas fa-thumbs-down" id="buttonPosts"> {{post.dislikes}}</button>
-		<button class="fas fa-comment" id="buttonPosts"> 0</button>
 	</div>
 </div>
 @end

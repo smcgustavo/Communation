@@ -133,6 +133,10 @@ input{
   color:#e2e2e2
 }
 
+#buttonDelete{
+  outline: none;
+}
+
 #loginBlock {
   display:grid;
   align-items: center;
@@ -172,6 +176,13 @@ input{
 #postHead{
   display: flex;
   align-items: center;
+  justify-content:space-between;
+}
+
+#postHeadIndex{
+  display: flex;
+  align-items: center;
+  width: 350px;
 }
 
 #likes {
@@ -215,6 +226,17 @@ input{
   outline:none;
   color: #e2e2e2;
   margin-left: 1.5%;
+}
+
+#postDeleteButton {
+  background-color: #aa3d3d;
+  border: none;
+  cursor:pointer;
+  outline:none;
+  color: #e2e2e2;
+  margin-right: 50px;
+  height: 40px;
+  width: 80px;
 }
 
 #postInput {
