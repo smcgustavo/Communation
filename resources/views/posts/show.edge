@@ -13,7 +13,8 @@
       </div>
       @if (owner)
         <form action='{{ route("posts.delete", {id : post.id})}}' method="GET">
-          <input type="submit" name="publishPost" id="postDeleteButton" value="Delete">
+          
+          <input class="fa fa-trash" type="submit" name="publishPost" id="postDeleteButton" value="">
         </form>
       @endif
     </div>

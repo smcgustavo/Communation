@@ -2,36 +2,71 @@
 
 @section('body')
 
+<script>
+  function toggleFavorites() {
+    const likedPosts = document.getElementById('likedPosts');
+    const Posts = document.getElementById('createdPosts');
+    Posts.style.display = Posts.style.display === 'none' ? 'block' : 'none';
+    likedPosts.style.display = likedPosts.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
+
 <div id="headTimelineFixed">
-    <a id="login" href="/posts">Timeline</a>
-    <a id="login" href="/logout">Logout</a>
+  <a id="login" href="/posts">Timeline</a>
+  <a id="login" href="/logout">Logout</a>
 </div>
 
 <div id="user-header-profile">
-    <div id="user-header-org">
-        <img src="Logo.png" id="img-header">
-        <div id="user-header-info">
-            <div id="name"> {{ user.name }}</div>
-            <div id="author"> {{ '@' + user.username }}</div>
-        </div>
+  <div id="user-header-org">
+    <img src="Logo.png" id="img-header">
+    <div id="user-header-info">
+      <div id="name"> {{ user.name }}</div>
+      <div id="author"> {{ '@' + user.username }}</div>
     </div>
-    <a href="/profile" class="fa fa-gear" id="settings-button-profile"></a>
+  </div>
+  <div id="settings-button-profile">
+    <a href="/profile" class="fa fa-gear"></a>
+    <button class="fa fa-star" onclick="toggleFavorites()"></button>
+  </div>
+
 </div>
 
 <div id="post-user-profile">
+
+  <div id="createdPosts">
     @each (post in posts)
     <div id="post">
-        <a href="/posts/{{post.id}}">
-            <div id="postHeadIndex">
-                <div id="name">{{post.name}}</div>
-                <div id="author">{{'@' + post.author}}</div>
-            </div>
-            <div id="content">{{post.content}}</div>
-        </a>
-        <div id="likes">
-            <button class="fas fa-thumbs-up" id="buttonPosts"> {{post.likes}} </button>
+      <a href="/posts/{{post.id}}">
+        <div id="postHeadIndex">
+          <div id="name">{{post.name}}</div>
+          <div id="author">{{'@' + post.author}}</div>
         </div>
+        <div id="content">{{post.content}}</div>
+      </a>
+      <div id="likes">
+        <button class="fas fa-thumbs-up" id="buttonPosts"> {{post.likes}} </button>
+      </div>
     </div>
     @end
+  </div>
+
+
+  <div id="likedPosts">
+    @each (post in likedPosts)
+    <div id="post">
+      <a href="/posts/{{post.id}}">
+        <div id="postHeadIndex">
+          <div id="name">{{post.name}}</div>
+          <div id="author">{{'@' + post.author}}</div>
+        </div>
+        <div id="content">{{post.content}}</div>
+      </a>
+      <div id="likes">
+        <button class="fas fa-thumbs-up" id="buttonPosts"> {{post.likes}} </button>
+      </div>
+    </div>
+    @end
+  </div>
+
 </div>
 @endsection

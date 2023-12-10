@@ -53,6 +53,14 @@ a {
 
 }
 
+#likedPosts{
+  display: none;
+}
+
+#createdPosts{
+  display: block;
+}
+
 #post-user-profile{
   border-radius:25px;
   display: block;
@@ -60,7 +68,6 @@ a {
   word-break:break-all;
   justify-content: space-between;
   width: 100%;
-
 }
 
 button {
@@ -229,14 +236,15 @@ input{
 }
 
 #postDeleteButton {
-  background-color: #aa3d3d;
+  background-color: Transparent;
+  background-repeat:no-repeat;
   border: none;
   cursor:pointer;
+  overflow: hidden;
   outline:none;
-  color: #e2e2e2;
-  margin-right: 50px;
-  height: 40px;
-  width: 80px;
+  color: #aa3d3d;
+  margin-top: 5%;
+  margin-right: 5%;
 }
 
 #postInput {
@@ -267,12 +275,13 @@ input{
 #headTimelineFixed {
   position: fixed;
   top: 0;
-  left: 20%;
-  right: 40%;
+  width: 400px;
+  left: 2%;
+  right: 30%;
   padding: 30px;
   padding-top: 0px;
   align-items: center;
-  z-index: 100;
+  z-index: 0;
 }
 #user-header-profile {
   display:flex;
