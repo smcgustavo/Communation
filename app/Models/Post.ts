@@ -24,6 +24,9 @@ export default class Post extends BaseModel {
   public likes : number
 
   @column()
-  public dislikes : number
+  public comments : number
+
+  @column()
+  public commented_to : number
   
 }

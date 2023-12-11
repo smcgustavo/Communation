@@ -36,11 +36,16 @@
 		</div>
 		<div id="content">{{post.content}}</div>
 	</a>
-	<form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+	<div id="post-info">
+		<form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+			<div id="likes">
+				<button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+			</div>
+		</form>
 		<div id="likes">
-			<button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+			<button class="fa fa-comment" id="buttonPosts" type="submit"> {{post.comments}}</button>
 		</div>
-	</form>
+	</div>
 </div>
 @end
 @end

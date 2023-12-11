@@ -28,6 +28,7 @@ Route.group(() => {
   Route.get('/', 'PostsController.index').as("index")
   Route.get('/:id', 'PostsController.show').as("show")
   Route.post('/', 'PostsController.create').as("create")
+  Route.post('/:id', 'PostsController.comment').as("comment")
   Route.get('/delete/:id', 'PostsController.delete').as('delete')
   Route.post('/like/:id', 'PostsController.like').as("like")
 })

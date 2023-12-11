@@ -13,16 +13,54 @@
     </div>
     @if (owner)
     <form action='{{ route("posts.delete", {id : post.id})}}' method="GET">
-
       <input class="fa fa-trash" type="submit" name="publishPost" id="postDeleteButton" value="">
     </form>
     @endif
   </div>
   <div id="content">{{post.content}}</div>
-  <form action='{{ route("posts.like", {id : post.id})}}' method="POST">
-    <div id="likes">
-      <button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
-    </div>
+  <div id="post-info">
+		<form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+			<div id="likes">
+				<button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+			</div>
+		</form>
+		<div id="likes">
+			<button class="fa fa-comment" id="buttonPosts" type="submit"> {{post.comments}}</button>
+		</div>
+	</div>
+</div>
+
+<div>
+  <form action='{{ route("posts.comment", {id: post.id})}}' method="POST" id="postInputBlock">
+    <textarea rows="4" cols="58" id="postInput" name="postContent" placeholder="Write something..."></textarea>
+    <input type="submit" name="publishPost" id="postSubmitButton" value="Publish">
   </form>
 </div>
-@end
+
+@if (commentsPost && commentsPost.length > 0)
+<div id="commentTitle">Comments</div>
+<div>
+  @each (post in commentsPost)
+  <div id="post">
+    <a href="/posts/{{post.id}}">
+      <div id="postHeadIndex">
+        <div id="name">{{post.name}}</div>
+        <div id="author">{{'@' + post.author}}</div>
+      </div>
+      <div id="content">{{post.content}}</div>
+    </a>
+    <div id="post-info">
+      <form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+        <div id="likes">
+          <button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+        </div>
+      </form>
+      <div id="likes">
+        <button class="fa fa-comment" id="buttonPosts" type="submit"> {{post.comments}}</button>
+      </div>
+    </div>
+  </div>
+  @end
+</div>
+@endif
+@endsection
