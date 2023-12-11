@@ -226,6 +226,15 @@ input{
   color: #aa3d3d;
 }
 
+#postsClass {
+  font-size: 28px;
+  line-height: 50px;
+  margin-bottom: 0px;
+  margin-top: 4%;
+  margin-left: 4%;
+  color: #aa3d3d;
+}
+
 #postSubmitButton {
   background-color: #aa3d3d;
   border: none;

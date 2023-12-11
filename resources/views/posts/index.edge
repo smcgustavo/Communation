@@ -29,16 +29,18 @@
 <div id="post">
 	<a href="/posts/{{post.id}}">
 		<div id="postHeadIndex">
-			
+
 			<div id="name">{{post.name}}</div>
 			<div id="author">{{'@' + post.author}}</div>
 
 		</div>
 		<div id="content">{{post.content}}</div>
 	</a>
-	<div id="likes">
-		<button class="fas fa-thumbs-up" id="buttonPosts" type="submit" > {{post.likes}} </button>
-	</div>
+	<form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+		<div id="likes">
+			<button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+		</div>
+	</form>
 </div>
 @end
 @end
