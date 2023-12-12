@@ -99,6 +99,15 @@ button {
   font-size: 16px;
 }
 
+#headerIcons{
+  border-radius: 15px;
+  background-color: #aa3d3d;
+  color: #e6e2ff;
+  padding: 5%;
+  height: 40px;
+  font-size: 16px;
+}
+
 #cancel {
   border-radius: 15px;
   background-color: #aa3d3d;
