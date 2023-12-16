@@ -84,6 +84,8 @@ export default class ProfilesController {
         return view.render('profile/profile', {user: user,  errorMessage: errorMessage });
       }
 
+      await Post.query().where('author', user.username).update({ author : newUsername});
+
       // Faça a atualização do nome de usuário
       user.username = newUsername;
       await user.save();
@@ -95,16 +97,4 @@ export default class ProfilesController {
       return response.redirect().back();
     }
   }
-  /*
-  public async update({ auth, request, response }: HttpContextContract) {
-      const user = auth.user!
-      const data = request.only(['name', 'password'])
-
-      // Atualize as informações do usuário
-      user.merge(data)
-      await user.save()
-
-      return response.redirect().toRoute('profile.index')
-  }
-  */
 }
