@@ -26,6 +26,7 @@
         background-color: #272727;
         padding: 20px;
         margin: 20px;
+        display: none;
     }
 
     .edit-section label {
@@ -85,7 +86,7 @@
     <div class="edit-section" id="edit-password-section">
         <h2>Change Password</h2>
         <form action='{{route("profile.updatePassword")}}' method="POST">
-           
+
             <div class="form-group">
                 <label for="new-password">New Password:</label>
                 <input type="password" name="new-password">
@@ -117,12 +118,12 @@
 <script>
     function toggleEditUsernameSection() {
         const editUsernameSection = document.getElementById('edit-username-section');
-        editUsernameSection.style.display = editUsernameSection.style.display === 'none' ? 'block' : 'none';
+        editUsernameSection.style.display = editUsernameSection.style.display === 'block' ? 'none' : 'block';
     }
 
     function toggleEditPasswordSection() {
         const editPasswordSection = document.getElementById('edit-password-section');
-        editPasswordSection.style.display = editPasswordSection.style.display === 'none' ? 'block' : 'none';
+        editPasswordSection.style.display = editPasswordSection.style.display === 'block' ? 'none' : 'block';
     }
 </script>
 @endsection
