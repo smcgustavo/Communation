@@ -1,8 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class SessionsController {
-  
+
   public async index({view}: HttpContextContract ){
     return view.render('sessions/create');
   }
@@ -35,8 +36,22 @@ export default class SessionsController {
     const emailC = request.input('emailC');
     const passwd = request.input('password');
     const passwdC = request.input('passwordC');
+
+    //Get emails from db to check if is there an account with that email
+    const emailsFromDb = await Database.from('users').select('email')
+    const usernamesFromDb = await Database.from('users').select('username')
+
+    const isInEmails = emailsFromDb.some(item => item.email === email);
+    const isInUsernames = usernamesFromDb.some(item => item.username === username);
+
     if(name == null || username == null || email == null || emailC == null || passwd == null || passwdC == null ){
       return view.render('sessions/register', { errorMessage: "One or more field(s) empty(ies)." });
+    }
+    if(isInEmails){
+      return view.render('sessions/register', {errorMessage : 'Email has already been taken.'});
+    }
+    if(isInUsernames){
+      return view.render('sessions/register', {errorMessage: 'Username has already been taken.'})
     }
     if(email === emailC && passwd === passwdC){
       User.create({email: email, password: passwd, name: name, username:username})

@@ -76,7 +76,7 @@ export default class ProfilesController {
       const usernames = await Database.from('users').select('username')
       const newUsername = request.input('new-username');
       const password = request.input('current-password-username');
-      if (usernames.includes(newUsername)) {
+      if (usernames.some(item => item.username === newUsername)) {
         const errorMessage = 'Already exists a profile with that username.';
         return view.render('profile/profile', { errorMessage: errorMessage });
       }
