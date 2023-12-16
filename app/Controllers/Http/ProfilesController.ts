@@ -36,34 +36,30 @@ export default class ProfilesController {
     return view.render('profile/profile', { user })
   }
   public async updatePassword({ auth, request, response, view }: HttpContextContract) {
-    try {
-      await auth.use('web').authenticate();
-      const user = auth.user;
-      if (!user) {
-        // Usuário não autenticado, redirecione ou lide com a situação de acordo
-        return response.redirect().toRoute('profile/profile');
-      }
 
-      const newPassword = request.input('new-password');
-      const newPasswordC = request.input('confirm-new-password');
-      const password = request.input('current-password');
-
-      if (!(await auth.use('web').attempt(user.email, password)) && newPassword === newPasswordC) {
-        // A senha fornecida não coincide, exiba um erro
-        const errorMessage2 = 'Invalid password.';
-        return view.render('profile/profile', { errorMessage: errorMessage2 });
-      }
-
-      // Faça a atualização do nome de usuário
-      user.password = newPassword;
-      await user.save();
-
-      // Redirecione para a página de perfil com uma mensagem de sucesso
-      return response.redirect().toRoute('profile/profile', { successMessage: 'Password changed sucessfully' });
-    } catch (error) {
-      // Lidar com outros erros, talvez exibir uma mensagem de erro
-      return response.redirect().back();
+    await auth.use('web').authenticate();
+    const user = auth.user;
+    if (!user) {
+      // Usuário não autenticado, redirecione ou lide com a situação de acordo
+      return response.redirect().toRoute('profile/profile');
     }
+
+    const newPassword = request.input('new-password');
+    const newPasswordC = request.input('confirm-new-password');
+    const password = request.input('current-password');
+
+    if (!(await auth.use('web').attempt(user.email, password)) && newPassword === newPasswordC) {
+      // A senha fornecida não coincide, exiba um erro
+      const errorMessage2 = 'Invalid password.';
+      return view.render('profile/profile', { user:user, errorMessage: errorMessage2 });
+    }
+
+    // Faça a atualização do nome de usuário
+    user.password = newPassword;
+    await user.save();
+
+    // Redirecione para a página de perfil com uma mensagem de sucesso
+    return response.redirect().toRoute('profile.index', { successMessage: 'Password changed sucessfully' });
   }
   public async updateUsername({ auth, request, response, view }: HttpContextContract) {
     try {
@@ -76,15 +72,16 @@ export default class ProfilesController {
       const usernames = await Database.from('users').select('username')
       const newUsername = request.input('new-username');
       const password = request.input('current-password-username');
+
       if (usernames.some(item => item.username === newUsername)) {
         const errorMessage = 'Already exists a profile with that username.';
-        return view.render('profile/profile', { errorMessage: errorMessage });
+        return view.render('profile/profile', { user : user, errorMessage: errorMessage });
       }
 
       if (!(await auth.use('web').attempt(user.email, password))) {
         // A senha fornecida não coincide, exiba um erro
         const errorMessage = 'Invalid password.';
-        return view.render('profile/profile', { errorMessage });
+        return view.render('profile/profile', {user: user,  errorMessage: errorMessage });
       }
 
       // Faça a atualização do nome de usuário
