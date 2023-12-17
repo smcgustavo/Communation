@@ -9,7 +9,7 @@ export default class PostsController {
     const posts = await Post.query().where('commented_to', 0).select('*').orderBy('created_at', 'desc')
     return view.render('posts/index', { posts: posts });
   }
-
+  
   public async show({ view, params, auth, response }: HttpContextContract) {
     await auth.authenticate()
     const post = await Post.find(params.id)
@@ -21,7 +21,8 @@ export default class PostsController {
       return response.status(404).json({message: "Post not found"})
     }
     const commentsPost = await Post.query().where('commented_to', post.id).select('*').orderBy('likes', 'desc')
-    return view.render('posts/show', { post, owner, commentsPost});
+    const rootPost = await Post.findBy('id', post.commented_to)
+    return view.render('posts/show', { post, owner, commentsPost, rootPost});
   }
 
   public async like({ params, auth, response }: HttpContextContract) {
@@ -95,7 +96,7 @@ export default class PostsController {
       }
       await post.delete();
       return response.redirect().toRoute('posts.index', { successMessage: 'Post deletado com sucesso.' });
-    } 
+    }
     catch (error) {
       console.error("Error deleting post with ID ${ postId }:", error);
       return response.redirect().toRoute('posts.index');

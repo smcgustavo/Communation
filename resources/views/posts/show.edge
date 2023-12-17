@@ -5,6 +5,57 @@
   <a id="headerIcons" href="/posts"></a>
   <a id="headerIcons" href="/logout"></a>
 </div>
+
+@if(rootPost)
+<div id="post">
+  <a href="/posts/{{rootPost.id}}">
+    <div id="postHeadIndex">
+      <div id="name">{{rootPost.name}}</div>
+      <div id="author">{{'@' + rootPost.author}}</div>
+    </div>
+    <div id="content">{{rootPost.content}}</div>
+  </a>
+  <div id="post-info">
+    <form action='{{ route("posts.like", {id : rootPost.id})}}' method="POST">
+      <div id="likes">
+        <button class="fa fa-star" id="buttonPosts" type="submit"> {{rootPost.likes}}</button>
+      </div>
+    </form>
+    <div id="likes">
+      <button class="fa fa-comment" id="buttonPosts" type="submit"> {{rootPost.comments}}</button>
+    </div>
+  </div>
+</div>
+<div class="rectangle"></div>
+@endif
+
+@if(rootPost)
+<div id="MiddleShowedPost">
+  <div id="postHead">
+    <div id="postHeadIndex">
+      <div id="name">{{post.name}}</div>
+      <div id="author">{{'@' + post.author}}</div>
+    </div>
+    @if (owner)
+    <form action='{{ route("posts.delete", {id : post.id})}}' method="GET">
+      <input class="fa fa-trash" type="submit" name="publishPost" id="postDeleteButton" value="">
+    </form>
+    @endif
+  </div>
+  <div id="content">{{post.content}}</div>
+  <div id="post-info">
+		<form action='{{ route("posts.like", {id : post.id})}}' method="POST">
+			<div id="likes">
+				<button class="fa fa-star" id="buttonPosts" type="submit"> {{post.likes}}</button>
+			</div>
+		</form>
+		<div id="likes">
+			<button class="fa fa-comment" id="buttonPosts" type="submit"> {{post.comments}}</button>
+		</div>
+	</div>
+</div>
+@endif
+@if(!rootPost)
 <div id="post">
   <div id="postHead">
     <div id="postHeadIndex">
@@ -29,6 +80,7 @@
 		</div>
 	</div>
 </div>
+@endif
 
 <div>
   <form action='{{ route("posts.comment", {id: post.id})}}' method="POST" id="postInputBlock">

@@ -53,6 +53,17 @@ a {
 
 }
 
+#MiddleShowedPost{
+  border-radius:25px;
+  margin-top: 0%;
+  padding: 25px;
+  display: block;
+  background-color: #272727;
+  word-break:break-all;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+
+}
+
 #likedPosts{
   display: none;
 }
@@ -392,4 +403,25 @@ main li:before {
 main code {
   font-size: 16px;
   background: #e6e2ff;
+}
+
+.rectangle {
+  width: 10px;
+  height: 60px;
+  background-color: #272727; /* Cor do retângulo */
+  margin-left: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+  position: relative;
+  animation: dissolve 2s forwards; /* Duração e direção da animação */
+  box-shadow: 4px 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes dissolve {
+  to {
+    width: 5px;
+    height: 30px;
+    background: #272727; /* Altera para nenhum fundo (transparente) */
+  }
 }
