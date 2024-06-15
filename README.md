@@ -1,3 +1,3 @@
 # Communation
 Communation is a web application which aims to be a twitter like social media where the main theme of it is inspired by the programming community and nation.
-The project uses the adonisjs framework.
+The project uses the adonisjs framework, with Typescript for typesafety and Sqlite because it's lightweight database which not required a lot of work to configure for this small project. The adonis template engine was utilized to modify the html which the client receives, it has a like and comment system and a thread design where every post can have a father post or a children's post list (This feature was designed just like pointers where every post have an id pointer for a father post). 
